@@ -1,56 +1,67 @@
 document.getElementById("pizza-form").onsubmit = () => {
-    let isVaild = true;
+
     clearErrors();
 
-    // Vaildate first name
+    let isValid = true;
+    
+    //Validate first name
     let fname = document.getElementById("fname").value.trim();
     if(!fname) {
         document.getElementById("err-fname").style.display = "block";
-          isVaild = false;
+        isValid = false;
     }
-    // Vaildate last name
+
+    //Validate last name
     let lname = document.getElementById("lname").value.trim();
     if(!lname) {
         document.getElementById("err-lname").style.display = "block";
-          isVaild = false;
+        isValid = false;
     }
-    // Vaildate email
+
+    //Validate email
     let email = document.getElementById("email").value.trim();
     if(!email) {
         document.getElementById("err-email").style.display = "block";
-          isVaild = false;
-    }
-    // Validation for pickup and delivery
-    let pickup = document.getElementById("pickup");
-    let delivery = document.getElementById("delivery");
-    if(!pickup.checked && !delivery.checked ) {
-        document.getElementById("err-pickup").style.display = "block";
-          isVaild = false;
-    }
-    // Validation for toppings
-let toppings = document.getElementById("toppings").value.trim();
-    if(!toppings) {
-        document.getElementById("err-toppings").style.display = "block";
-          isVaild = false;
+        isValid = false;
     }
 
-// Validation for pizza Size
+    //Validate pizza size
     let size = document.getElementById("size").value;
     if(size == "none") {
         document.getElementById("err-size").style.display = "block";
-          isVaild = false;
+        isValid = false;
     }
-    
 
+    //Validate method
+    let pickup = document.getElementById("pickup");
+    let delivery = document.getElementById("delivery");
+    if(!pickup.checked && !delivery.checked) {
+        document.getElementById("err-method").style.display = "block";
+        isValid = false;
+    }
 
-    return isVaild;
+    /*
+    let methodButtons = document.getElementsByName("method");
+    let count = 0;
+    for (let i=0; i<methodButtons.length; i++) {
+        if (methodButtons[i].checked) {
+            count++;
+        }
+    }
+    if (count === 0) {
+        document.getElementById("err-method").style.display = "block";
+        isValid = false;
+    }
+    */
+   
+    return isValid;
+
 }
 
-function clearErrors () {
+/* Clear all error messages when form is submitted */
+function clearErrors() {
     let errors = document.getElementsByClassName("err");
-    for (let i = 0; i < errors.length; i++) {
+    for (let i=0; i<errors.length; i++) {
         errors[i].style.display = "none";
-        
     }
 }
-
